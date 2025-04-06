@@ -1,6 +1,6 @@
 package Application.RentalHouse.model;
 
-public enum role {
+public enum Role {
     rental,
     owner,
     admin

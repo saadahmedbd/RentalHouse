@@ -1,6 +1,6 @@
 package Application.RentalHouse.model;
 
-public enum status {
+public enum Status {
     pending,
     approved,
     rejected
