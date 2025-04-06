@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "house")
+@Table(name = "houses")
 public class House {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,5 +31,8 @@ public class House {
 
     @OneToMany (mappedBy = "house") // one house can have a lot of review
     private List<Review> reviews;
+    @OneToMany(mappedBy = "house", cascade = CascadeType.ALL)
+    private List<Image> images;
+
     private Date created_at;
 }

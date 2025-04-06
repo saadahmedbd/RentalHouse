@@ -8,6 +8,8 @@ public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private House house_id;
+    @ManyToOne
+    @JoinColumn(name = "house_id")
+    private House house;
     private String url;
 }
