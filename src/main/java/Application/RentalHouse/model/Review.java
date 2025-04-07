@@ -1,6 +1,7 @@
 package Application.RentalHouse.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 
@@ -21,5 +22,7 @@ public class Review {
     @Lob //large object if you want to a large text you need lob annotation
     private String comment;
     private String url;
-    private Date created_at;
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
+    private Date created_at; //automatic hibernate set current timezone
 }

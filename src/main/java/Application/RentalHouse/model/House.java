@@ -1,6 +1,7 @@
 package Application.RentalHouse.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 import org.w3c.dom.Text;
 
 import java.util.Date;
@@ -34,5 +35,7 @@ public class House {
     @OneToMany(mappedBy = "house", cascade = CascadeType.ALL)
     private List<Image> images;
 
-    private Date created_at;
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
+    private Date created_at; //automatic set current timezone
 }

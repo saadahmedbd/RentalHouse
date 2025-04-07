@@ -1,6 +1,7 @@
 package Application.RentalHouse.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 import java.util.List;
@@ -25,7 +26,9 @@ public class User {
     private String password;
     @Enumerated(EnumType.STRING) // role admin, rental, owner
     private Role role;
-    private Date created_at;
+    @CreationTimestamp
+    @Column(name = "created_at",updatable = false)
+    private Date created_at;  //when user create account automatic set current time
 
     //relationship
     @OneToMany(mappedBy = "owner") // The owner can add many houses
