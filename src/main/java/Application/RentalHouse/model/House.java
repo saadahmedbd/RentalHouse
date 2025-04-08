@@ -14,7 +14,8 @@ public class House {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long house_id;
     private String title;
-//    @Lob // large object if you want to a large text you need lob annotation
+ //  @Lob // large object if you want to a large text you need lob annotation
+ //  @Column(columnDefinition = "TEXT")
     private String description;
     private String address;
     private String city;

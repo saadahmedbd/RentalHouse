@@ -19,7 +19,8 @@ public class Review {
     @JoinColumn(name = "user_id") //review
     private User user;
     private double rating;
-//    @Lob //large object if you want to a large text you need lob annotation
+ //  @Lob //large object if you want to a large text you need lob annotation
+//   @Column(columnDefinition = "TEXT")
     private String comment;
     private String url;
     @CreationTimestamp
