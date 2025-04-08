@@ -1,16 +1,26 @@
 package Application.RentalHouse.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 import java.util.List;
 
 @Entity
+
 @Table(name = "users", uniqueConstraints = {
         @UniqueConstraint(columnNames = "email"),
         @UniqueConstraint(columnNames = "phone")
 })
+//lombok annotation
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //use in auto increment DB best for psql, mySQl
@@ -39,5 +49,86 @@ public class User {
     @OneToMany(mappedBy = "user") // the user can review much review
     private List<Review> reviews;
 
+    //getter and setter
 
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Date getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(Date created_at) {
+        this.created_at = created_at;
+    }
+
+    public List<House> getHouses() {
+        return houses;
+    }
+
+    public void setHouses(List<House> houses) {
+        this.houses = houses;
+    }
+
+    public List<RentalRequest> getRentalRequests() {
+        return rentalRequests;
+    }
+
+    public void setRentalRequests(List<RentalRequest> rentalRequests) {
+        this.rentalRequests = rentalRequests;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
 }
