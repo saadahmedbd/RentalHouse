@@ -1,5 +1,6 @@
 package Application.RentalHouse.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -42,6 +43,8 @@ public class User {
 
     //relationship
     @OneToMany(mappedBy = "owner") // The owner can add many houses
+    @JsonIgnore  // This stops serialization and breaks the cycle //avoid infinite data loops
+
     private List<House> houses;
     @OneToMany(mappedBy = "rental") // the rental can request many request
     private List<RentalRequest> rentalRequests;
