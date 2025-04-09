@@ -20,27 +20,32 @@ public class UserCon {
         return userService.getAllUsers();
     }
     // get user by id
-    @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable long id){
-        return userService.getUserById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
+//    @GetMapping("/{id}")
+//    public ResponseEntity<User> getUserById(@PathVariable long id){
+//        return userService.getUserById(id)
+//                .map(ResponseEntity::ok)
+//                .orElse(ResponseEntity.notFound().build());
+//    }
     //or use
     //different between responseEntity and optional
     //if user by id do not have in a database response entity give you not found
     // and optional give you null value
 
 
-//    @GetMapping("/{id}")
-//    public Optional<User> getuserId(@PathVariable long id){
-//        return userService.getUserById(id);
-//    }
+    @GetMapping("/{id}")
+    public User getuserId(@PathVariable long id){
+        return userService.getUserById(id);
+    }
 
     // create user in db
     @PostMapping
     public User createUser(@RequestBody User user){
         return userService.createUsers(user);
+    }
+    //update user
+    @PutMapping("/{id}")
+    public User updateUser(@PathVariable long id, @RequestBody User user){
+        return userService.updateUserById(id,user);
     }
 
     //delete user
