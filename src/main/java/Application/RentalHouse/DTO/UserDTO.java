@@ -19,8 +19,17 @@ public class UserDTO {
     //constructor
 
 
-    public UserDTO(long id, String name, String email, String phone,
-                   String password, Role role, Date created_at) {
+    public UserDTO() {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.password = password; // can't add password bcz you do not want to share password
+        this.role = role;
+        this.created_at = created_at;
+    }
+
+    public UserDTO(long id, String name, String email, String phone, String password, Role role, Date created_at) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -29,7 +38,6 @@ public class UserDTO {
         this.role = role;
         this.created_at = created_at;
     }
-
     // getter setter
 
 
