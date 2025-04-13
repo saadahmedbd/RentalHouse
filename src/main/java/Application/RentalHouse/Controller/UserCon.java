@@ -29,6 +29,14 @@ public class UserCon {
     public List<UserDTO> getAllUser(){
         return userService.getUser();
     }
+    @GetMapping("/{id}")
+    public List<UserDTO> getUserBYID(@PathVariable long id){
+        return userService.getUserByID(id);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteUserBYId(@PathVariable long id){
+        userService.deleteUser(id);
+    }
 
 
 
