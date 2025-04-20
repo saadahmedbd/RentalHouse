@@ -1,5 +1,6 @@
 package Application.RentalHouse.Service;
 
+import Application.RentalHouse.DTO.UpdateUserDTO;
 import Application.RentalHouse.DTO.UserDTO;
 import Application.RentalHouse.Execption.ResourceNotFoundException;
 import Application.RentalHouse.Repository.UsersRepo;
@@ -16,6 +17,7 @@ public interface UserService {
     List<UserDTO> getUser();
     List<UserDTO> getUserByID(Long id);
     void deleteUser (Long id);
+    UserDTO updateUser (Long id, UpdateUserDTO updateUserDTO);
 
 
 

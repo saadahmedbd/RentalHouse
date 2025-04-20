@@ -1,5 +1,6 @@
 package Application.RentalHouse.Service.Imp;
 
+import Application.RentalHouse.DTO.UpdateUserDTO;
 import Application.RentalHouse.DTO.UserDTO;
 import Application.RentalHouse.DTOMapper.UserMapper;
 import Application.RentalHouse.Execption.ResourceNotFoundException;
@@ -50,7 +51,14 @@ public class UserServiceIMP implements UserService {
         usersRepo.deleteById(id);
     }
 
+    @Override
+    public UserDTO updateUser(Long id,UpdateUserDTO updateUserDTO) {
+        User user =usersRepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("user"+ id+"not found"));
 
+        userMapper.UpdateUserFromDTO(updateUserDTO,user); //copy field
+        User UpdateUser =usersRepo.save(user); //save in db
+        return userMapper.toDTO(user); //return update dto
+    }
 
 
 }

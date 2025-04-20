@@ -1,6 +1,8 @@
 package Application.RentalHouse.Controller;
 
+import Application.RentalHouse.DTO.UpdateUserDTO;
 import Application.RentalHouse.DTO.UserDTO;
+import Application.RentalHouse.DTOMapper.UserMapper;
 import Application.RentalHouse.Service.UserService;
 import Application.RentalHouse.model.User;
 import org.mapstruct.control.MappingControl;
@@ -36,6 +38,11 @@ public class UserCon {
     @DeleteMapping("/{id}")
     public void deleteUserBYId(@PathVariable long id){
         userService.deleteUser(id);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<UserDTO> updateUser(@PathVariable long id, @RequestBody UpdateUserDTO updateUserDTO){
+       // UserDTO updateUser =userService.updateUser(id,updateUserDTO);
+        return ResponseEntity.ok(userService.updateUser(id,updateUserDTO));
     }
 
 
