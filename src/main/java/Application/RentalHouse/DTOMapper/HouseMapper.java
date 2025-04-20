@@ -16,7 +16,7 @@ public interface HouseMapper {
     HouseDTO toDTO(House house); // entity -> dto
     House toEntity(HouseDTO houseDTO); //DTO -> entity
 
-    void updateHouseFromDTO (UpdateHouseDTO updateHouseDTO, @MappingTarget House house);
+    void updateHouseFromDTO (UpdateHouseDTO houseDTO, @MappingTarget House house);
 
     }
 
