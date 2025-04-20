@@ -1,8 +1,11 @@
 package Application.RentalHouse.Controller;
 
 import Application.RentalHouse.DTO.HouseDTO;
+import Application.RentalHouse.DTO.UpdateHouseDTO;
+import Application.RentalHouse.DTOMapper.HouseMapper;
+import Application.RentalHouse.DTOMapper.UserMapper;
 import Application.RentalHouse.Service.HouseService;
-import org.springframework.beans.factory.annotation.Autowired;
+import Application.RentalHouse.model.House;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +16,11 @@ import java.util.List;
 @RequestMapping("/api/house")
 public class HouseCon {
     private final HouseService houseService;
+    private final HouseMapper houseMapper;
 
-    public HouseCon(HouseService houseService) {
+    public HouseCon(HouseService houseService, UserMapper userMapper, HouseMapper houseMapper) {
         this.houseService = houseService;
+        this.houseMapper = houseMapper;
     }
 
 //    @GetMapping("/{id}")
@@ -37,6 +42,11 @@ public class HouseCon {
     @DeleteMapping("/{id}")
     public void deleteHouse(@PathVariable long id){
         houseService.deleteHouse(id);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<HouseDTO> updateHouse (@PathVariable long id, @RequestBody UpdateHouseDTO updateHouseDTO){
+       // House updateHouse = houseService.updateHouse(id, updateHouseDTO);
+        return ResponseEntity.ok(houseService.updateHouse(id,updateHouseDTO));
     }
 
 

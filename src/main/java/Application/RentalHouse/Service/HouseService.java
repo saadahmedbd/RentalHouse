@@ -1,7 +1,7 @@
 package Application.RentalHouse.Service;
 
 import Application.RentalHouse.DTO.HouseDTO;
-import Application.RentalHouse.model.House;
+import Application.RentalHouse.DTO.UpdateHouseDTO;
 
 import java.util.List;
 
@@ -11,5 +11,7 @@ public interface HouseService {
     List<HouseDTO> getHouseById (Long id);
     List<HouseDTO> getHouse();
     void deleteHouse(Long id);
+
+    HouseDTO updateHouse(Long id, UpdateHouseDTO updateHouseDTO);
 
 }

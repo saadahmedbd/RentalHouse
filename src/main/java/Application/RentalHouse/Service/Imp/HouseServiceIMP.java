@@ -1,6 +1,7 @@
 package Application.RentalHouse.Service.Imp;
 
 import Application.RentalHouse.DTO.HouseDTO;
+import Application.RentalHouse.DTO.UpdateHouseDTO;
 import Application.RentalHouse.DTOMapper.HouseMapper;
 import Application.RentalHouse.Execption.ResourceNotFoundException;
 import Application.RentalHouse.Repository.HouseRepo;
@@ -45,6 +46,15 @@ public class HouseServiceIMP implements HouseService {
     @Override
     public void deleteHouse(Long id) {
         houseRepo.deleteById(id);
+    }
+
+    @Override
+    public HouseDTO updateHouse(Long id, UpdateHouseDTO updateHouseDTO) {
+        House house =houseRepo.findById(id).orElseThrow(()->
+                new ResourceNotFoundException("not found "+id+" house"));
+        houseMapper.updateHouseFromDTO(updateHouseDTO,house);
+        House updateUser =houseRepo.save(house);
+        return houseMapper.toDTO(house);
     }
 
 
