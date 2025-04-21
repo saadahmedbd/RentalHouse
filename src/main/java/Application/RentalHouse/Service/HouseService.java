@@ -1,7 +1,7 @@
 package Application.RentalHouse.Service;
 
 import Application.RentalHouse.DTO.HouseDTO;
-import Application.RentalHouse.DTO.UpdateHouseDTO;
+import Application.RentalHouse.DTO.UpdateDTO.UpdateHouseDTO;
 
 import java.util.List;
 

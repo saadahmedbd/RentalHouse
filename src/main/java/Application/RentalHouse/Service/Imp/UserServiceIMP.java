@@ -1,14 +1,12 @@
 package Application.RentalHouse.Service.Imp;
 
-import Application.RentalHouse.DTO.UpdateUserDTO;
+import Application.RentalHouse.DTO.UpdateDTO.UpdateUserDTO;
 import Application.RentalHouse.DTO.UserDTO;
 import Application.RentalHouse.DTOMapper.UserMapper;
 import Application.RentalHouse.Execption.ResourceNotFoundException;
 import Application.RentalHouse.Repository.UsersRepo;
 import Application.RentalHouse.Service.UserService;
 import Application.RentalHouse.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.expression.ExpressionException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

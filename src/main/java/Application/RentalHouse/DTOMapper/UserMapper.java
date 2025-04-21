@@ -1,6 +1,6 @@
 package Application.RentalHouse.DTOMapper;
 
-import Application.RentalHouse.DTO.UpdateUserDTO;
+import Application.RentalHouse.DTO.UpdateDTO.UpdateUserDTO;
 import Application.RentalHouse.DTO.UserDTO;
 import Application.RentalHouse.model.User;
 import org.mapstruct.BeanMapping;

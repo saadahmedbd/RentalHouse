@@ -1,12 +1,8 @@
 package Application.RentalHouse.Controller;
 
-import Application.RentalHouse.DTO.UpdateUserDTO;
+import Application.RentalHouse.DTO.UpdateDTO.UpdateUserDTO;
 import Application.RentalHouse.DTO.UserDTO;
-import Application.RentalHouse.DTOMapper.UserMapper;
 import Application.RentalHouse.Service.UserService;
-import Application.RentalHouse.model.User;
-import org.mapstruct.control.MappingControl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

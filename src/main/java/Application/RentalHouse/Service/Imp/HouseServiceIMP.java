@@ -1,7 +1,7 @@
 package Application.RentalHouse.Service.Imp;
 
 import Application.RentalHouse.DTO.HouseDTO;
-import Application.RentalHouse.DTO.UpdateHouseDTO;
+import Application.RentalHouse.DTO.UpdateDTO.UpdateHouseDTO;
 import Application.RentalHouse.DTOMapper.HouseMapper;
 import Application.RentalHouse.Execption.ResourceNotFoundException;
 import Application.RentalHouse.Repository.HouseRepo;

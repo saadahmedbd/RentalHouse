@@ -1,11 +1,10 @@
 package Application.RentalHouse.Controller;
 
 import Application.RentalHouse.DTO.HouseDTO;
-import Application.RentalHouse.DTO.UpdateHouseDTO;
+import Application.RentalHouse.DTO.UpdateDTO.UpdateHouseDTO;
 import Application.RentalHouse.DTOMapper.HouseMapper;
 import Application.RentalHouse.DTOMapper.UserMapper;
 import Application.RentalHouse.Service.HouseService;
-import Application.RentalHouse.model.House;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

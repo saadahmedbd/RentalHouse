@@ -1,4 +1,4 @@
-package Application.RentalHouse.DTO;
+package Application.RentalHouse.DTO.UpdateDTO;
 
 import lombok.Data;
 
