@@ -24,4 +24,51 @@ public class RentalRequest {
     private LocalDate started;
     private LocalDate endDate;
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public House getHouse() {
+        return house;
+    }
+
+    public void setHouse(House house) {
+        this.house = house;
+    }
+
+    public User getRental() {
+        return rental;
+    }
+
+    public void setRental(User rental) {
+        this.rental = rental;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public LocalDate getStarted() {
+        return started;
+    }
+
+    public void setStarted(LocalDate started) {
+        this.started = started;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
 }
