@@ -33,6 +33,8 @@ public class RentalRequestServiceIMP implements RentalRequestService {
 //        RentalRequest rentalRequest =rentalRequestDTOMapper.toEntity(rentalRequestDTO); // dto to entity
 //        RentalRequest saved =rentalRepo.save(rentalRequest); //saved in db
 //        return rentalRequestDTOMapper.toDTO(saved); //entity to dto
+
+        //if you set relation data long type than your relationship data set format like below
         House house = houseRepo.findById(rentalRequestDTO.getHouseId()).
                 orElseThrow(()-> new ResourceNotFoundException("house id"+ rentalRequestDTO.getHouseId()));
 
@@ -40,11 +42,17 @@ public class RentalRequestServiceIMP implements RentalRequestService {
                 .orElseThrow(()-> new ResourceNotFoundException("rental id"+ rentalRequestDTO.getRentalId()));
 
         RentalRequest rentalRequest =new RentalRequest();
+
+
         rentalRequest.setHouse(house);
         rentalRequest.setRental(user);
-        rentalRequestDTO.setStatus(rentalRequestDTO.getStatus());
+        rentalRequest.setStatus(rentalRequestDTO.getStatus());
+
+       rentalRequest.setStarted(rentalRequestDTO.getStarted());
+       rentalRequest.setEndDate(rentalRequestDTO.getEndDate());
+
         RentalRequest saved =rentalRepo.save(rentalRequest);
-        return rentalRequestDTOMapper.toDTO(saved);
+        return rentalRequestDTOMapper.toDTO(saved); //entity to dto
     }
 
     @Override
