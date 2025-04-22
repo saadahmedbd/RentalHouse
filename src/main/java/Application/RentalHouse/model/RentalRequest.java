@@ -1,6 +1,7 @@
 package Application.RentalHouse.model;
 
 import jakarta.persistence.*;
+import org.mapstruct.ap.internal.model.GeneratedType;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -23,6 +24,7 @@ public class RentalRequest {
     private Status status;
     private LocalDate started;
     private LocalDate endDate;
+
 
     public long getId() {
         return id;
