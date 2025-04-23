@@ -1,6 +1,7 @@
 package Application.RentalHouse.Service.Imp;
 
 import Application.RentalHouse.DTO.RentalRequestDTO;
+import Application.RentalHouse.DTO.UpdateDTO.UpdateRentalReqDTO;
 import Application.RentalHouse.DTOMapper.RentalRequestDTOMapper;
 import Application.RentalHouse.Execption.ResourceNotFoundException;
 import Application.RentalHouse.Repository.HouseRepo;
@@ -72,5 +73,14 @@ public class RentalRequestServiceIMP implements RentalRequestService {
     @Override
     public void deleteRentalReq(long id) {
         rentalRepo.deleteById(id);
+    }
+
+    @Override
+    public RentalRequestDTO updateRentalReq(long id, UpdateRentalReqDTO updateRentalReqDTO) {
+        RentalRequest rentalRequest=rentalRepo.findById(id).orElseThrow(()->
+                new ResourceNotFoundException("update user id "+id+" not found"));
+        rentalRequestDTOMapper.UpdateRentalReqFromDTO(updateRentalReqDTO,rentalRequest); // copy field
+        RentalRequest updateRentalReq=rentalRepo.save(rentalRequest);
+        return rentalRequestDTOMapper.toDTO(updateRentalReq);
     }
 }

@@ -1,6 +1,7 @@
 package Application.RentalHouse.Controller;
 
 import Application.RentalHouse.DTO.RentalRequestDTO;
+import Application.RentalHouse.DTO.UpdateDTO.UpdateRentalReqDTO;
 import Application.RentalHouse.Service.RentalRequestService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,5 +34,9 @@ public class RentalReqCon {
     @DeleteMapping("/{id}")
     public void deleteRentalreqById(@PathVariable long id){
         rentalRequestService.deleteRentalReq(id);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<RentalRequestDTO> updateRentalReq(@PathVariable long id,@RequestBody UpdateRentalReqDTO updateRentalReqDTO){
+        return ResponseEntity.ok().body(rentalRequestService.updateRentalReq(id,updateRentalReqDTO));
     }
 }

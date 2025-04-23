@@ -1,10 +1,10 @@
 package Application.RentalHouse.DTOMapper;
 
 import Application.RentalHouse.DTO.RentalRequestDTO;
+import Application.RentalHouse.DTO.UpdateDTO.UpdateRentalReqDTO;
 import Application.RentalHouse.model.RentalRequest;
 import ch.qos.logback.core.model.ComponentModel;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.mapstruct.*;
 import org.springframework.stereotype.Component;
 
 @Mapper(componentModel="Spring")
@@ -19,4 +19,8 @@ public interface RentalRequestDTOMapper {
     @Mapping(target = "house", ignore = true)
     @Mapping(target = "rental", ignore = true)
     RentalRequest toEntity(RentalRequestDTO rentalRequestDTO); // DTO -> Entity
+
+    //for update rentalreq mappring
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    void UpdateRentalReqFromDTO(UpdateRentalReqDTO updateRentalReqDTO, @MappingTarget RentalRequest rentalRequest);
 }
