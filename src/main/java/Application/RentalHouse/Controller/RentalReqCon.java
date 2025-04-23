@@ -30,4 +30,8 @@ public class RentalReqCon {
     public List<RentalRequestDTO> getRentalReqById(@PathVariable long id){
         return rentalRequestService.getRentalReqById(id);
     }
+    @DeleteMapping("/{id}")
+    public void deleteRentalreqById(@PathVariable long id){
+        rentalRequestService.deleteRentalReq(id);
+    }
 }

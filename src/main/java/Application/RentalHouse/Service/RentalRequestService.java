@@ -11,4 +11,6 @@ public interface RentalRequestService  {
     List<RentalRequestDTO> getRentalReq();
     List<RentalRequestDTO> getRentalReqById(long id);
 
+    void deleteRentalReq (long id);
+
 }

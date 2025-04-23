@@ -57,11 +57,20 @@ public class RentalRequestServiceIMP implements RentalRequestService {
 
     @Override
     public List<RentalRequestDTO> getRentalReq() {
-        return rentalRepo.findAll().stream().map(rentalRequestDTOMapper::toDTO).collect(Collectors.toList());
+        return rentalRepo.findAll().stream()
+                .map(rentalRequestDTOMapper::toDTO)
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<RentalRequestDTO> getRentalReqById(long id) {
-        return rentalRepo.findById(id).stream().map(rentalRequestDTOMapper::toDTO).collect(Collectors.toList());
+        return rentalRepo.findById(id).stream()
+                .map(rentalRequestDTOMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteRentalReq(long id) {
+        rentalRepo.deleteById(id);
     }
 }
