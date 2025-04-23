@@ -9,5 +9,6 @@ public interface RentalRequestService  {
     RentalRequestDTO createRentalReq(RentalRequestDTO rentalRequestDTO);
 
     List<RentalRequestDTO> getRentalReq();
+    List<RentalRequestDTO> getRentalReqById(long id);
 
 }

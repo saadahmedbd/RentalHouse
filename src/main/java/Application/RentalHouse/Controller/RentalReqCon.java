@@ -26,4 +26,8 @@ public class RentalReqCon {
     public List<RentalRequestDTO> getRentalReq(){
         return rentalRequestService.getRentalReq();
     }
+    @GetMapping("/{id}")
+    public List<RentalRequestDTO> getRentalReqById(@PathVariable long id){
+        return rentalRequestService.getRentalReqById(id);
+    }
 }

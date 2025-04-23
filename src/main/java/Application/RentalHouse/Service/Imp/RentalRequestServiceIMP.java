@@ -59,4 +59,9 @@ public class RentalRequestServiceIMP implements RentalRequestService {
     public List<RentalRequestDTO> getRentalReq() {
         return rentalRepo.findAll().stream().map(rentalRequestDTOMapper::toDTO).collect(Collectors.toList());
     }
+
+    @Override
+    public List<RentalRequestDTO> getRentalReqById(long id) {
+        return rentalRepo.findById(id).stream().map(rentalRequestDTOMapper::toDTO).collect(Collectors.toList());
+    }
 }
