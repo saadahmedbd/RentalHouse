@@ -1,6 +1,8 @@
 package Application.RentalHouse.DTO;
 
 import Application.RentalHouse.model.User;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
 
@@ -11,13 +13,20 @@ import java.util.Date;
 //To avoid exposing your entity structure directly and add flexibility.
 public class HouseDTO {
     private long house_id;
+    @NotBlank(message = "House title is required")
     private String title;
     private String description;
+    @NotBlank(message = "House address is required")
     private String address;
+    @NotBlank(message = "City is required")
     private String city;
+    @NotNull(message = "rent price is required")
     private double rent_price;
+    @NotNull(message = "House size is required")
     private int size;
+    @NotNull(message = "House bedroom is required")
     private int bedrooms;
+   @NotNull(message = "House bathrooms is required")
     private int bathrooms;
     private boolean available;
     private Date created_at;

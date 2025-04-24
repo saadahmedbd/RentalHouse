@@ -1,6 +1,8 @@
 package Application.RentalHouse.DTO;
 
 import Application.RentalHouse.model.Role;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.Date;
 
@@ -9,9 +11,14 @@ import java.util.Date;
 // This gives you full control over your API response format.
 public class UserDTO {
     private long id;
+
+    @NotBlank(message = "Name is required")
     private  String name;
+    @Email(message = "Email should be valid")
+    @NotBlank(message = "Email required")
     private String email;
     private String phone;
+    @NotBlank(message = "password is required")
     private String password;
     private Role role;
     private Date created_at;
