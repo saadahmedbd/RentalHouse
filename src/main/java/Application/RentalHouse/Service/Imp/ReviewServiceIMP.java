@@ -1,6 +1,7 @@
 package Application.RentalHouse.Service.Imp;
 
 import Application.RentalHouse.DTO.ReviewDTO;
+import Application.RentalHouse.DTO.UpdateDTO.UpdateReviewDTO;
 import Application.RentalHouse.DTOMapper.ReviewMapper;
 import Application.RentalHouse.Execption.ResourceNotFoundException;
 import Application.RentalHouse.Repository.HouseRepo;
@@ -65,4 +66,15 @@ public class ReviewServiceIMP implements ReviewService {
     public void deleteById(long id) {
         reviewRepo.deleteById(id);
     }
+
+    @Override
+    public ReviewDTO updateReviewById(long id, UpdateReviewDTO updateReviewDTO) {
+        Review review =reviewRepo.findById(id).
+                orElseThrow(()-> new ResourceNotFoundException("review id "+id+" not found"));
+        reviewMapper.updateReviewFromDTO(updateReviewDTO, review); //copy
+        Review saved=reviewRepo.save(review);
+        return reviewMapper.toDTO(saved);
+    }
+
+
 }

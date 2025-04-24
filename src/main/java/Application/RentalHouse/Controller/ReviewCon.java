@@ -1,7 +1,9 @@
 package Application.RentalHouse.Controller;
 
 import Application.RentalHouse.DTO.ReviewDTO;
+import Application.RentalHouse.DTO.UpdateDTO.UpdateReviewDTO;
 import Application.RentalHouse.Service.ReviewService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,5 +33,9 @@ public class ReviewCon {
     @DeleteMapping("/{id}")
     public void deleteReview(@PathVariable long id){
         reviewService.deleteById(id);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<ReviewDTO> updateReviewById(@PathVariable long id, @RequestBody UpdateReviewDTO updateReviewDTO){
+        return ResponseEntity.status(HttpStatus.CREATED).body(reviewService.updateReviewById(id, updateReviewDTO));
     }
 }
