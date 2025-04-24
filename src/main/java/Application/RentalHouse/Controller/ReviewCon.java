@@ -21,7 +21,15 @@ public class ReviewCon {
         return ResponseEntity.ok().body(reviewService.createReview(reviewDTO));
     }
     @GetMapping
-    public List<ReviewDTO> createReview(){
+    public List<ReviewDTO> getReview(){
         return reviewService.getReview();
+    }
+    @GetMapping("/{id}")
+    public List<ReviewDTO> getReviewById(@PathVariable long id){
+        return reviewService.getReviewById(id);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteReview(@PathVariable long id){
+        reviewService.deleteById(id);
     }
 }

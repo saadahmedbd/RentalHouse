@@ -53,4 +53,16 @@ public class ReviewServiceIMP implements ReviewService {
     public List<ReviewDTO> getReview() {
         return reviewRepo.findAll().stream().map(reviewMapper::toDTO).collect(Collectors.toList());
     }
+
+    @Override
+    public List<ReviewDTO> getReviewById(long id) {
+        return reviewRepo.findById(id).stream().
+                map(reviewMapper::toDTO).
+                collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteById(long id) {
+        reviewRepo.deleteById(id);
+    }
 }
