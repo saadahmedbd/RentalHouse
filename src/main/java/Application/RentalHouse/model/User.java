@@ -18,10 +18,7 @@ import java.util.List;
         @UniqueConstraint(columnNames = "phone")
 })
 //lombok annotation
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //use in auto increment DB best for psql, mySQl
@@ -34,6 +31,7 @@ public class User {
     private String email;
     @Column(nullable = false,unique = true)
     private String phone;
+    @Column(nullable = false)
     private String password;
     @Enumerated(EnumType.STRING) // role admin, rental, owner
     private Role role;
