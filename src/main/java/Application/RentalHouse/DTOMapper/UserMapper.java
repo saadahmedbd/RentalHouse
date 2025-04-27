@@ -2,6 +2,7 @@ package Application.RentalHouse.DTOMapper;
 
 import Application.RentalHouse.DTO.UpdateDTO.UpdateUserDTO;
 import Application.RentalHouse.DTO.UserDTO;
+import Application.RentalHouse.DTO.UserRegistationDTO;
 import Application.RentalHouse.model.User;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
@@ -13,6 +14,8 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 public interface UserMapper {
     UserDTO toDTO(User user); // Entity -> DTO
     User toEntity(UserDTO userDTO); //DTO -> entity
+
+    User toEntity(UserRegistationDTO dto);
 
 
     // ✅ Update existing user from DTO

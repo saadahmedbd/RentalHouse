@@ -2,7 +2,11 @@ package Application.RentalHouse.Controller;
 
 import Application.RentalHouse.DTO.UpdateDTO.UpdateUserDTO;
 import Application.RentalHouse.DTO.UserDTO;
+import Application.RentalHouse.DTO.UserRegistationDTO;
+import Application.RentalHouse.Repository.UsersRepo;
+import Application.RentalHouse.Service.Imp.UserServiceIMP;
 import Application.RentalHouse.Service.UserService;
+import Application.RentalHouse.model.User;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +18,11 @@ import java.util.List;
 @RequestMapping("/api/users")
 public class UserCon {
     public  final UserService userService;
+    public final UsersRepo usersRepo;
 
-    public UserCon(UserService userService) {
+    public UserCon(UserService userService, UsersRepo usersRepo) {
         this.userService = userService;
+        this.usersRepo = usersRepo;
     }
 
 
@@ -40,6 +46,31 @@ public class UserCon {
     public ResponseEntity<UserDTO> updateUser(@PathVariable long id, @RequestBody UpdateUserDTO updateUserDTO){
        // UserDTO updateUser =userService.updateUser(id,updateUserDTO);
         return ResponseEntity.ok(userService.updateUser(id,updateUserDTO));
+    }
+
+    //for email verification
+    @PostMapping("/register")
+    public ResponseEntity<String> registerUser(@RequestBody UserRegistationDTO dto){
+        userService.registerUser(dto);
+        return ResponseEntity.ok("Registration successful. Please check your email to verify");
+    }
+    @GetMapping("/verify")
+    public ResponseEntity<String> verifyEmail(@PathVariable String token){
+        userService.verifyEmail(token);
+        return  ResponseEntity.ok("email verify successfully");
+    }
+    @GetMapping("/check-email-verified")
+    public ResponseEntity<String> checkEmailVerified(@RequestParam String email) {
+        User user = usersRepo.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        boolean isVerified = ((UserServiceIMP)userService).isEmailVerified(user);
+
+        if (isVerified) {
+            return ResponseEntity.ok("Email is verified.");
+        } else {
+            return ResponseEntity.badRequest().body("Email not verified yet.");
+        }
     }
 
 

@@ -50,6 +50,11 @@ public class User {
     @OneToMany(mappedBy = "user") // the user can review much review
     private List<Review> reviews;
 
+    //for email verification
+    //step 01: add verified field
+    @Column(nullable = false)
+    private boolean verified =false;
+
     //getter and setter
 
 
@@ -131,5 +136,13 @@ public class User {
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    public boolean isVerified() {
+        return verified;
+    }
+
+    public void setVerified(boolean verified) {
+        this.verified = verified;
     }
 }
