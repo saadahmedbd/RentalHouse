@@ -52,8 +52,9 @@ public class User {
 
     //for email verification
     //step 01: add verified field
-    @Column(nullable = false)
-    private boolean verified =false;
+    @Column(nullable = false, columnDefinition = "boolean default false")
+    private Boolean verified;
+
 
     //getter and setter
 
