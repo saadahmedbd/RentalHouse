@@ -13,7 +13,6 @@ import Application.RentalHouse.Service.MailService;
 import Application.RentalHouse.Service.UserService;
 import Application.RentalHouse.model.User;
 import Application.RentalHouse.model.VerificationToken;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -73,42 +72,7 @@ public class UserServiceIMP implements UserService {
     }
     //for email verification
 
-    @Override
-    public void registerUser(UserRegistationDTO userRegistationDTO) {
-        if(usersRepo.findByEmail(userRegistationDTO.getEmail()).isPresent()){
-            throw new EmailAlreadyExistsException("Email already exist");
-        }
-        User user =userMapper.toEntity(userRegistationDTO);
-        user.setPassword(new BCryptPasswordEncoder().encode(userRegistationDTO.getPassword()));
-        usersRepo.save(user);
 
-        String token = UUID.randomUUID().toString();
-        VerificationToken verificationToken = new VerificationToken();
-        verificationToken.setToken(token);
-        verificationToken.setUser(user);
-        verificationToken.setExpiry_date(LocalDateTime.now().plusMinutes(15));
-        verificationTokenRepo.save(verificationToken);
-
-        mailService.sendVerificationEmail(user.getEmail(), token);
-    }
-
-    @Override
-    public void verifyEmail(String token) {
-        VerificationToken verificationToken=verificationTokenRepo.findByToken(token).
-                orElseThrow(()-> new EmailNotVerifedException("invalid email"));
-        if (verificationToken.getExpiry_date().isBefore(LocalDateTime.now())) {
-            throw new EmailNotVerifedException("Token expired.");
-        }
-
-        User user = verificationToken.getUser();
-        verificationTokenRepo.delete(verificationToken); // Token delete after verification
-        usersRepo.save(user); // Save again to trigger any needed events
-
-    }
-    public boolean isEmailVerified(User user) {
-        Optional<VerificationToken> tokenOptional = verificationTokenRepo.findByUser(user);
-        return tokenOptional.isEmpty();
-    }
 
 
 }

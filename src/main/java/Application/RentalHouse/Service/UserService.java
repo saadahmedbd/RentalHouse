@@ -15,9 +15,6 @@ public interface UserService {
     void deleteUser (Long id);
     UserDTO updateUser (Long id, UpdateUserDTO updateUserDTO);
 
-    //for email verification
-    void registerUser(UserRegistationDTO userRegistationDTO);
-    void verifyEmail(String token);
 
 
 
