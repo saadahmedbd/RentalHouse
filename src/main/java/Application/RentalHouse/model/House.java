@@ -14,15 +14,22 @@ public class House {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long house_id;
+    @Column(nullable = false)
     private String title;
  //  @Lob // large object if you want to a large text you need lob annotation
  //  @Column(columnDefinition = "TEXT")
+
     private String description;
+    @Column(nullable = false)
     private String address;
+    @Column(nullable = false)
     private String city;
+    @Column(nullable = false)
     private double rent_price;
     private int size;
+    @Column(nullable = false)
     private int bedrooms;
+    @Column(nullable = false)
     private int bathrooms;
     private boolean available;
     @ManyToOne //  opposite of one to many "one owner can post multiple houses for rent post"
