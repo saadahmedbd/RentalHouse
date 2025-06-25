@@ -36,12 +36,7 @@ public class UserServiceIMP implements UserService {
         this.verificationTokenRepo = verificationTokenRepo;
     }
 
-    @Override
-    public UserDTO createUser(UserDTO userDTO) {
-        User user =userMapper.toEntity(userDTO); //DTO -> entity
-        User saved =usersRepo.save(user);       // save in DB
-        return userMapper.toDTO(saved);         // entity to DTO
-    }
+
 
     @Override
     public List<UserDTO> getUser() {

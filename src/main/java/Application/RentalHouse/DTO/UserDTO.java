@@ -3,6 +3,8 @@ package Application.RentalHouse.DTO;
 import Application.RentalHouse.model.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 import java.util.Date;
 
@@ -17,8 +19,10 @@ public class UserDTO {
     @Email(message = "Email should be valid")
     @NotBlank(message = "Email required")
     private String email;
+    @Pattern(regexp = "^\\d{11}$", message = "Phone number must be exactly 11 digits")
+    @Size(min = 11, max = 11, message = "Phone number must be exactly 11 digits")
     private String phone;
-    @NotBlank(message = "password is required")
+    @Size(min = 6, message = "Password must be at least 6 characters")
     private String password;
     private Role role;
     private Date created_at;
