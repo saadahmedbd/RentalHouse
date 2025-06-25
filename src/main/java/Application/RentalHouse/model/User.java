@@ -7,7 +7,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +23,7 @@ import java.util.List;
 })
 //lombok annotation
 
-public class User {
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //use in auto increment DB best for psql, mySQl
     private long id;
@@ -52,8 +56,7 @@ public class User {
 
     //for email verification
     //step 01: add verified field
-    @Column(nullable = false, columnDefinition = "boolean default false")
-    private Boolean verified;
+
 
 
     //getter and setter
@@ -91,9 +94,7 @@ public class User {
         this.phone = phone;
     }
 
-    public String getPassword() {
-        return password;
-    }
+
 
     public void setPassword(String password) {
         this.password = password;
@@ -139,11 +140,38 @@ public class User {
         this.reviews = reviews;
     }
 
-    public boolean isVerified() {
-        return verified;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority("Use"));
     }
 
-    public void setVerified(boolean verified) {
-        this.verified = verified;
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return  true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }
