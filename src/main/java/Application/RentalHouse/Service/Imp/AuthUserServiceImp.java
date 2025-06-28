@@ -23,14 +23,21 @@ public class AuthUserServiceImp implements AuthUserService {
 
     @Override
     public void RegisterUser(UserDTO userDTO) {
+        String rawPassword=userDTO.getPassword();
         if(usersRepo.existsByEmail(userDTO.getEmail())){
             throw new IllegalArgumentException("email already exist");
         }if(usersRepo.existsByPhone(userDTO.getPhone())){
             throw  new IllegalArgumentException("phone number already exist");
+        }if(rawPassword == null){
+            throw new IllegalArgumentException("password not be null");
         }
 
             User user= authUserDTOMapper.toEntity(userDTO);
-        user.setPassword(encoder.encode(user.getPassword()));
+        user.setName(userDTO.getName());
+        user.setEmail(userDTO.getEmail());
+        user.setPhone(userDTO.getPhone());
+        user.setPassword(encoder.encode(rawPassword));
+        user.setRole(userDTO.getRole());
          usersRepo.save(user);
     }
 }
