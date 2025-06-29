@@ -1,5 +1,7 @@
 package Application.RentalHouse.Service.Imp;
 
+import Application.RentalHouse.DTO.LoginRequestDTO;
+import Application.RentalHouse.DTO.LoginResponceDTO;
 import Application.RentalHouse.DTO.UserDTO;
 import Application.RentalHouse.DTOMapper.AuthUserDTOMapper;
 import Application.RentalHouse.DTOMapper.UserMapper;
@@ -40,4 +42,16 @@ public class AuthUserServiceImp implements AuthUserService {
         user.setRole(userDTO.getRole());
          usersRepo.save(user);
     }
+
+    @Override
+    public LoginResponceDTO login(LoginRequestDTO loginDTO) {
+        User user=usersRepo.findByEmail(loginDTO.getEmail()).orElseThrow(()->
+                new IllegalArgumentException("Invalid email or password"));
+        if(!encoder.matches(loginDTO.getPassword(),user.getPassword())){
+            throw new IllegalArgumentException("Invalid email or password");
+        }
+        return new LoginResponceDTO("Login successful ",user.getEmail());
+    }
+
+
 }

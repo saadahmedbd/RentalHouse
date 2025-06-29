@@ -2,12 +2,8 @@ package Application.RentalHouse.Controller;
 
 import Application.RentalHouse.DTO.UpdateDTO.UpdateUserDTO;
 import Application.RentalHouse.DTO.UserDTO;
-import Application.RentalHouse.DTO.UserRegistationDTO;
 import Application.RentalHouse.Repository.UsersRepo;
 import Application.RentalHouse.Service.UserService;
-import Application.RentalHouse.model.User;
-import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
