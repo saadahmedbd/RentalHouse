@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/house")
+@RequestMapping("/api/houses/public")
 public class HouseCon {
     private final HouseService houseService;
     private final HouseMapper houseMapper;
@@ -31,7 +31,7 @@ public class HouseCon {
     public List<HouseDTO> getHouseById(@PathVariable long id){
         return houseService.getHouseById(id);
     }
-    @GetMapping
+    @GetMapping("/all")
     public  List<HouseDTO> getHouses(){
         return houseService.getHouse();
     }
