@@ -8,6 +8,9 @@ import Application.RentalHouse.DTOMapper.UserMapper;
 import Application.RentalHouse.Repository.UsersRepo;
 import Application.RentalHouse.Service.AuthUserService;
 import Application.RentalHouse.model.User;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +20,13 @@ public class AuthUserServiceImp implements AuthUserService {
     private final AuthUserDTOMapper authUserDTOMapper;
     private BCryptPasswordEncoder encoder=new BCryptPasswordEncoder(12);
 
-    public AuthUserServiceImp(UsersRepo usersRepo, UserMapper userMapper, AuthUserDTOMapper authUserDTOMapper) {
+    private final AuthenticationManager authenticationManager;
+
+    public AuthUserServiceImp(UsersRepo usersRepo, UserMapper userMapper, AuthUserDTOMapper authUserDTOMapper, AuthenticationManager authenticationManager) {
         this.usersRepo = usersRepo;
         this.authUserDTOMapper = authUserDTOMapper;
 
+        this.authenticationManager = authenticationManager;
     }
 
     @Override
@@ -50,7 +56,15 @@ public class AuthUserServiceImp implements AuthUserService {
         if(!encoder.matches(loginDTO.getPassword(),user.getPassword())){
             throw new IllegalArgumentException("Invalid email or password");
         }
-        return new LoginResponceDTO("Login successful ",user.getEmail());
+        return new LoginResponceDTO(loginDTO.getEmail(), loginDTO.getPassword());
+    }
+
+    @Override
+    public LoginResponceDTO loginJwt(LoginRequestDTO loginDTO) {
+        Authentication authenticationManager1= authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken( loginDTO.getEmail(), loginDTO.getPassword())
+        );
+        return new LoginResponceDTO("login successful",loginDTO.getEmail());
     }
 
 

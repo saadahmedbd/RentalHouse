@@ -9,4 +9,6 @@ import org.springframework.stereotype.Service;
 public interface AuthUserService {
     void RegisterUser (UserDTO userDTO);
     LoginResponceDTO login(LoginRequestDTO loginDTO);
+
+    LoginResponceDTO loginJwt(LoginRequestDTO loginDTO);
 }
